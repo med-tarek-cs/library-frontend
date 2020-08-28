@@ -9,6 +9,15 @@
       "category": "Datebases"
     },
     {
+      "id": 4,
+      "image": "AWS-Certified-SysOps-Administrator-Practice-Tests.jpg",
+      "title": "AWS Certified SysOps Administrator Practice Tests",
+      "author": "Ben Piper, Sara Perrott",
+      "isbn": "1119622727",
+      "lang": "English",
+      "category": "Certification"
+    },
+    {
       "id": 2,
       "image": "Practical-Entity-Framework.jpg",
       "title": "Android Application Development All-in-One For Dummies, 3rd Edition",
@@ -16,6 +25,15 @@
       "isbn": "1119660459",
       "lang": "English",
       "category": "Programming"
+    },
+    {
+      "id": 3,
+      "image": "Practical-Test-Automation.jpg",
+      "title": "Practical Test Automation",
+      "author": "Panos Matsinopoulos",
+      "isbn": "1484261402",
+      "lang": "English",
+      "category": "javascript"
     }
 
   ]
