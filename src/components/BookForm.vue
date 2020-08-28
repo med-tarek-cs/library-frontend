@@ -33,7 +33,7 @@
   export default {
     name: "BookForm",
     data: () => ({
-      items: ['Web Development', 'Networking', 'Security', 'Operating Systems'],
+      items: ['Web Development', 'Networking', 'Security', 'Operating Systems', 'Crypto'],
       rules: [
         value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
       ],
