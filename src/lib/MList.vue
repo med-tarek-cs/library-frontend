@@ -7,19 +7,19 @@
 </template>
 
 <script>
-export default {
-  name: "MList",
-  props: ["headers", "items"],
-  data() {
-    return {
-      page: 1,
-    };
-  },
-};
+  export default {
+    name: "MList",
+    props: ["headers", "items"],
+    data() {
+      return {
+        page: 1,
+      };
+    },
+  };
 </script>
 
 <style scoped>
-.v-input--is-focused {
-  background-color: red;
-}
+  .v-input--is-focused {
+    background-color: red;
+  }
 </style>

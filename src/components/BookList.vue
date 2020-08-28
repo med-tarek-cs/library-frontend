@@ -1,51 +1,53 @@
 <template>
   <v-card>
-    <v-data-table
-            :headers="headers"
-            :items="items"
-            :items-per-page="5"
-            class="elevation-1"
-    >
-      <template #item.image="{ item }">
-        <Thumbnail :src="item.image"></Thumbnail>
-      </template>
+     <v-card-title>
+      <MToolbar :title="title" @filter="filterKey"></MToolbar>
+     </v-card-title>
 
-      <template #item.lang="{ item }" >
+    <v-divider></v-divider>
+    <v-card-text>
+      <v-data-table
+              :headers="headers"
+              :items="items"
+              :items-per-page="5"
+      >
+
+        <template #item.image="{ item }">
+          <Thumbnail :src="item.image" />
+        </template>
+
+        <template #item.lang="{ item }" >
           <span style="padding: 5px 15px;" > {{ item.lang }} </span>
-      </template>
+        </template>
 
-      <template v-slot:item.actions="{ item }" >
-       <div style="width: 80px">
-         <v-icon
-                 class="mr-2"
-                 @click="editItem(item)"
-                 color="primary"
-         >
-           mdi-pencil
-         </v-icon>|
-         <v-icon
+        <template #item.actions="{item}" >
+          <Actions :item="item"
+                   @edit="editItem"
+                   @delete="deleteItem"
+          />
+        </template>
 
-                 @click="deleteItem(item)"
-                 color="warning"
-         >
-           mdi-delete
-         </v-icon>
-       </div>
-      </template>
-    </v-data-table>
+      </v-data-table>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
   import Items from '../../data.json';
+  import MToolbar from './MToolbar'
   import Thumbnail from "./Thumbnail";
+  import Actions from "./Actions";
   export default {
     name: "BookList",
     components: {
-      Thumbnail
+      MToolbar,
+      Thumbnail,
+      Actions
     },
     data() {
       return {
+        title: 'List of Books',
+        filterKey: '',
         headers: [
           {
             text: 'Image',
@@ -58,18 +60,26 @@
           {text: 'ISBN', value: 'isbn'},
           {text: 'Language', value: 'lang'},
           {text: 'Category', value: 'category'},
-          {text: 'Actions', value: 'actions'},
+          {text: 'Actions', value: 'actions', sortable: false},
         ],
         items: Items.books
+      }
+    },
+    computed: {
+      filteredItems() {
+        console.log(this.filterKey)
+        return this.filterKey
       }
     },
     methods: {
       editItem(id) {
         console.log('edit item: ', id)
+
       },
       deleteItem(id) {
-        console.log('delete item: ', id)
-      }
+        console.log('delete item: ', id);
+      },
+
     }
   }
 </script>
