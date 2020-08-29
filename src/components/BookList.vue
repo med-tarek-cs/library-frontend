@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import Items from '../../data.json';
+  import axios from 'axios';
   import MToolbar from './MToolbar'
   import Thumbnail from "./Thumbnail";
   import Actions from "./Actions";
@@ -62,8 +62,13 @@
           {text: 'Category', value: 'category'},
           {text: 'Actions', value: 'actions', sortable: false},
         ],
-        items: Items.books
+        items: []
       }
+    },
+    created(){
+      axios.get('http://localhost:3000/books')
+          .then(items => this.items = items.data)
+          .catch(err => console.log(err))
     },
     computed: {
       filteredItems() {
