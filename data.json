@@ -1,5 +1,6 @@
 {
-  "books": [{
+  "books": [
+    {
       "id": 1,
       "image": "Practical-Entity-Framework.jpg",
       "title": "Practical Entity Framework",
@@ -34,7 +35,15 @@
       "isbn": "1484261402",
       "lang": "English",
       "category": "javascript"
+    },
+    {
+      "id": 5,
+      "image": "AWS-Certified-SysOps-Administrator-Practice-Tests.jpg",
+      "title": "AWS Certified SysOps Administrator Practice Tests",
+      "author": "Ben Piper, Sara Perrott",
+      "isbn": "1119622727",
+      "lang": "English",
+      "category": "Certification"
     }
-
   ]
 }

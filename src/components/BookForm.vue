@@ -3,7 +3,6 @@
     <v-card-title>
       <h2>{{ title }}</h2>
     </v-card-title>
-    {{ item }}
     <v-card-text>
       <v-text-field label="Title" v-model="item.title"></v-text-field>
       <v-text-field label="Author"  v-model="item.author"></v-text-field>
@@ -58,7 +57,6 @@
         this.$store.dispatch("books/updateItem")(this.item)
       },
       save(){
-        console.log('save new book: ' + this.item)
         this.$store.dispatch("books/addItem", this.item)
       },
       cancel(){
