@@ -1,7 +1,7 @@
 <template>
   <v-card>
      <v-card-title>
-      <MToolbar :title="title" @filter="filterKey"></MToolbar>
+      <MToolbar :title="title" @filter="filter"></MToolbar>
      </v-card-title>
 
     <v-divider></v-divider>
@@ -47,7 +47,6 @@
     data() {
       return {
         title: 'List of Books',
-        filterKey: '',
         headers: [
           {
             text: 'Image',
@@ -69,11 +68,7 @@
     },
     computed: {
       items() {
-        return this.$store.state.books.all;
-      },
-      filteredItems() {
-        console.log(this.filterKey)
-        return this.filterKey
+        return this.$store.getters['books/filteredItems']
       }
     },
     methods: {
@@ -85,6 +80,9 @@
         console.log('delete item: ', id);
       },
 
+      filter(v) {
+        this.$store.commit('books/setFilterKey', v)
+      }
     }
   }
 </script>

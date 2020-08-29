@@ -9,6 +9,7 @@
             append-icon="mdi-magnify"
             placeholder="Search by title"
             single-line
+            @keyup="input"
             v-model="filterKey"
     ></v-text-field>
 

@@ -4,27 +4,37 @@ const BASE_URL = 'http://localhost:3000'
 
 // initial state
 const state = () => ({
-  all: []
+  all: [],
+  filterKey: '',
 })
 
 // getters
-const getters = {}
+const getters = {
+  filteredItems: state => state.all
+      .filter(book => book.title
+          .toLowerCase()
+          .includes(state.filterKey.toLowerCase()))
+}
 
 // actions
 const actions = {
-  async getAllItems ({ commit }) {
-   let items = (await axios.get( `${BASE_URL}/books`)).data;
-   commit('setItems', items);
+  async getAllItems({commit}) {
+    let items = (await axios.get(`${BASE_URL}/books`)).data;
+    commit('setItems', items);
   }
 }
 
 // mutations
 const mutations = {
-  setItems (state, items) {
+  setItems(state, items) {
     state.all = items
   },
 
-  decrementBookInventory (state, { id }) {
+  setFilterKey(state, filterKey) {
+    state.filterKey = filterKey
+  },
+
+  decrementBookInventory(state, {id}) {
     const book = state.all.find(book => book.id === id)
     book.inventory--
   }
