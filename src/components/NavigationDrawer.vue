@@ -108,9 +108,9 @@
           text: 'Books',
           model: true,
           children: [
-            {icon: 'mdi-menu', text: 'List Books', link: 'books'},
-            {icon: 'mdi-plus', text: 'Add Book', link: 'bookForm'},
-            {icon: 'mdi-plus', text: 'Add Category', link: 'category'},
+            {icon: 'mdi-menu', text: 'List Books', link: '/books'},
+            {icon: 'mdi-plus', text: 'Add Book', link: '/bookForm'},
+            {icon: 'mdi-plus', text: 'Add Category', link: '/category'},
           ],
         },
         {
