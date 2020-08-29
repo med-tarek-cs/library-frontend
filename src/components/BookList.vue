@@ -61,16 +61,16 @@
           {text: 'Language', value: 'lang'},
           {text: 'Category', value: 'category'},
           {text: 'Actions', value: 'actions', sortable: false},
-        ],
-        items: []
+        ]
       }
     },
-    created(){
-      axios.get('http://localhost:3000/books')
-          .then(items => this.items = items.data)
-          .catch(err => console.log(err))
+    async created(){
+      await this.$store.dispatch('books/getAllItems');
     },
     computed: {
+      items() {
+        return this.$store.state.books.all;
+      },
       filteredItems() {
         console.log(this.filterKey)
         return this.filterKey
