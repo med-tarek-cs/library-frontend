@@ -2,7 +2,7 @@
   <div style="width: 80px">
     <v-icon
             class="mr-2"
-            @click="editItem(item)"
+            @click="editItem(item.id)"
             color="primary"
     >
       mdi-pencil

@@ -1,7 +1,10 @@
 <template>
   <v-card>
      <v-card-title>
-      <MToolbar :title="title" @filter="filter"></MToolbar>
+      <MToolbar :title="title"
+                @filter="filter"
+                @addNew="newItem"
+      ></MToolbar>
      </v-card-title>
 
     <v-divider></v-divider>
@@ -72,8 +75,12 @@
       }
     },
     methods: {
+      newItem(){
+        this.$router.push('/books/new')
+      },
       editItem(id) {
         console.log('edit item: ', id)
+        this.$router.push('/books/edit/' + id )
 
       },
       deleteItem(id) {

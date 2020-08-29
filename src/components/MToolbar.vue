@@ -13,7 +13,7 @@
             v-model="filterKey"
     ></v-text-field>
 
-    <v-btn rounded outlined color="primary">
+    <v-btn rounded outlined color="primary" @click="add">
       <v-icon class="pr-3">mdi-plus-circle</v-icon>
       add
     </v-btn>
@@ -32,6 +32,9 @@
     methods: {
       input() {
         this.$emit('filter', this.filterKey)
+      },
+      add() {
+        this.$emit('addNew')
       }
     }
   }

@@ -27,6 +27,16 @@ Vue.use(VueRouter)
       path: '/books',
       name: 'BookList',
       component: () => import('@/components/BookList')
+    },
+    {
+      path: '/books/edit/:id',
+      name: 'EditBook',
+      component: () => import('@/components/BookForm')
+    },
+    {
+      path: '/books/new',
+      name: 'addBook',
+      component: () => import('@/components/BookForm')
     }
   ]
 
