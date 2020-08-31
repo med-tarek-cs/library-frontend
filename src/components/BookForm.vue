@@ -11,6 +11,7 @@
       <v-select
               :items="selectOptions"
               label="Category"
+							v-model="item.category"
       ></v-select>
 
       <v-file-input
@@ -51,10 +52,12 @@
     },
     methods: {
       submit(){
-        this.id ? this.update() : this.save()
+        this.id ? this.update() : this.save();
+				this.toPreviousPage();
       },
       update(){
-        this.$store.dispatch("books/updateItem")(this.item)
+        this.$store.dispatch("books/updateItem")(this.item);
+				this.toPreviousPage();
       },
       save(){
         this.$store.dispatch("books/addItem", this.item)

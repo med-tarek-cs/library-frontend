@@ -44,6 +44,28 @@
       "isbn": "1119622727",
       "lang": "English",
       "category": "Certification"
+    },
+    {
+      "title": "Micro Frontends in Action",
+      "isbn": "978-1617296871",
+      "author": " Michael Geers",
+      "lang": " English",
+      "id": 6
+    },
+    {
+      "title": "Teach Yourself VISUALLY Windows 10, 3rd Edition",
+      "author": "Paul McFedries",
+      "isbn": "1119698596",
+      "lang": " English",
+      "id": 7
+    },
+    {
+      "title": "CISA Certified Information Systems Auditor Practice Exams",
+      "isbn": "1260459845",
+      "author": " Peter H. Gregory",
+      "lang": "English",
+      "category": "Networking",
+      "id": 8
     }
   ]
 }
