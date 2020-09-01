@@ -18,11 +18,14 @@
       <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
     </v-btn>
 
+    <!-- Add Footer -->
+    <Footer />
   </v-app>
 </template>
 
 <script>
 import NavigationDrawer from "./components/NavigationDrawer";
+import Footer from "@/components/Footer";
 
 export default {
   name: "App",
@@ -33,6 +36,7 @@ export default {
   },
   components: {
     NavigationDrawer,
+    Footer,
   },
   methods: {
     top() {
