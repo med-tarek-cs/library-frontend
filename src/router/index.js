@@ -37,6 +37,11 @@ Vue.use(VueRouter)
       path: '/books/new',
       name: 'addBook',
       component: () => import('@/components/BookForm')
+    },
+    {
+      path: '/SignUp',
+      name: 'SignUp',
+      component: () => import('@/views/SignUp')
     }
   ]
 
