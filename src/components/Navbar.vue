@@ -49,6 +49,8 @@ export default {
       { text: "Home", route: "/" },
       { text: "Book List", route: "/books" },
       { text: "About Us", route: "/about" },
+      { text: "Sign Up", route: "/signup" },
+      { text: "Sign In", route: "/signin" },
     ],
   }),
   methods: {

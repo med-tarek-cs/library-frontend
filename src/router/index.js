@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import AuthGuard from './auth-guard'
+
+const Home = () => import('@/views/Home')
+const Profile = () => import('@/components/user/Profile')
+const Signup = () => import('@/components/user/Signup')
+const Signin = () => import('@/components/user/Signin')
 
 Vue.use(VueRouter)
 
@@ -39,9 +44,20 @@ Vue.use(VueRouter)
       component: () => import('@/components/BookForm')
     },
     {
-      path: '/SignUp',
-      name: 'SignUp',
-      component: () => import('@/views/SignUp')
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     }
   ]
 
