@@ -7,6 +7,9 @@ const state = () => ({
 const getters = {
   user (state) {
     return state.user
+  },
+  loggeIn(state){
+    return !!state.user
   }
 }
 
@@ -128,14 +131,10 @@ const actions= {
           .catch(error => dispatch('setSharedError', error))
     },
 
-    logout ({commit}) {
+    logout ({commit, dispatch}) {
       firebase.auth().signOut()
           .then(() => commit('setUser', null))
-          .catch(
-              error => {
-                commit('shared/setError', error, {root: true})
-              }
-          )
+          .catch(error => dispatch('setSharedError', error))
     },
   initSharedLoading : ({commit}) => {
     commit('shared/setLoading', true, {root: true})

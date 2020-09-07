@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Store from '@/store/'
 import AuthGuard from './auth-guard'
-
 const Home = () => import('@/views/Home')
 const Profile = () => import('@/components/user/Profile')
 const Signup = () => import('@/components/user/Signup')
@@ -64,7 +64,20 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+
 })
+
+let isAuthenticated
+const openRoutes = ['Signin', 'Signup', 'Public']
+router.beforeEach((to, from, next) => {
+  isAuthenticated = Store.getters['auth/loggeIn'];
+  console.log(isAuthenticated)
+  if( openRoutes.includes(to.name)){
+      next()
+    }else if (!isAuthenticated) next({ name: 'Signin' })
+    else next()
+
+  })
 
 export default router
