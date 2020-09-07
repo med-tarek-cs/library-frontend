@@ -45,14 +45,26 @@ export default {
   props: ["title"],
   data: () => ({
     drawer: null,
-    links: [
-      { text: "Home", route: "/" },
-      { text: "Book List", route: "/books" },
-      { text: "About Us", route: "/about" },
-      { text: "Sign Up", route: "/signup" },
-      { text: "Sign In", route: "/signin" },
-    ],
   }),
+  computed: {
+    links(){
+      let menuItems = [
+        { text: "Sign Up", route: "/signup" },
+        { text: "Sign In", route: "/signin" },
+      ]
+      if(this.userLoginIn) {
+        menuItems = [
+          { text: "Home", route: "/" },
+          { text: "Book List", route: "/books" },
+          { text: "About Us", route: "/about" },
+        ]
+      }
+      return menuItems
+    },
+    userLoginIn () {
+      return this.$store.getters['auth/user']
+    }
+  },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;

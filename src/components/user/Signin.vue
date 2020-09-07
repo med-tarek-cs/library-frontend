@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row v-if="error">
       <v-flex xs12 sm6 offset-sm3>
-        <Alert @dismissed="onDismissed" :text="error.message"></Alert>
+        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -21,6 +21,7 @@
                             id="email"
                             v-model="email"
                             type="email"
+                            prepend-inner-icon="mdi-email-outline"
                             required></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -32,13 +33,14 @@
                             id="password"
                             v-model="password"
                             type="password"
+                            prepend-inner-icon="mdi-key"
                             required></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
                     <div class="text-xs-center">
-                      <v-btn rounded  type="submit" :disabled="loading" :loading="loading">
+                      <v-btn rounded outlined color="primary" type="submit" :disabled="loading" :loading="loading">
                         Sign in
                         <v-icon right>mdi-lock-open</v-icon>
                         <span slot="loader" class="custom-loader">
@@ -84,7 +86,7 @@
 
                     <!--  Reset Password -->
                     <div class="text-xs-center">
-                      <v-btn rounded color="warning" dark :disabled="loading" :loading="loading" @click.prevent="onResetPassword">Reset Password By Email
+                      <v-btn rounded outlined color="warning" dark :disabled="loading" :loading="loading" @click.prevent="onResetPassword">Reset Password By Email
                         <v-icon right dark>mdi-email</v-icon>
                         <span slot="loader" class="custom-loader">
                         <v-icon light>mdi-cached</v-icon>
@@ -103,11 +105,7 @@
 </template>
 
 <script>
-  import Alert from '@/components/shared/Alert'
   export default {
-    components: {
-      Alert
-    },
     data () {
       return {
         email: '',
@@ -152,10 +150,10 @@
         if (this.email === '') {
           return this.$store.dispatch('setError', {message: 'Email can not be blank'})
         }
-        this.$store.dispatch('resetPasswordWithEmail', {email: this.email})
+        this.$store.dispatch('auth/resetPasswordWithEmail', {email: this.email})
       },
       onDismissed () {
-        this.$store.dispatch('clearError')
+        this.$store.dispatch('shared/clearError')
       }
     }
   }

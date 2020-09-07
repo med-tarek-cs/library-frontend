@@ -2,7 +2,7 @@
  <v-container>
   <v-layout row v-if="error">
    <v-flex xs12 sm6 offset-sm3>
-    <Alert @dismissed="onDismissed" :text="error.message"></Alert>
+    <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
    </v-flex>
   </v-layout>
   <v-layout row>
@@ -99,11 +99,7 @@
 </template>
 
 <script>
- import Alert from '@/components/shared/Alert'
  export default {
-  components: {
-   Alert
-  },
   data () {
    return {
     email: '',

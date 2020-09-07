@@ -1,5 +1,7 @@
 <template>
-  <v-alert error dismissible @input="onClose" :value="true">
+  <v-alert  text
+            outlined
+            color="deep-orange" dismissible @input="onClose" :value="true">
     {{ text }}
   </v-alert>
 </template>

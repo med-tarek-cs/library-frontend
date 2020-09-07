@@ -5,9 +5,13 @@ import * as firebase from 'firebase'
 import store from './store'
 import router from './router'
 import vuetify from './plugins/vuetify';
+import AlertCmp from './components/shared/Alert'
+
 
 Vue.config.productionTip = false
+Vue.component('app-alert', AlertCmp)
 
+let app;
 new Vue({
   store,
   router,
@@ -25,5 +29,9 @@ new Vue({
     };
     // Initialize Firebase
     firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user)
+    })
   }
 }).$mount('#app')
