@@ -62,6 +62,7 @@
                   v-else
                   :key="item.text"
                   link
+                  @click="handleClicked(item.text)"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -139,6 +140,12 @@
       toggle(v) {
         console.log(v)
         this.drawer = v;
+      },
+      handleClicked(v){
+        if('Logout' == v){
+          this.$store.dispatch('auth/logout')
+          this.$router.push('/signin');
+        }
       }
     }
   }
