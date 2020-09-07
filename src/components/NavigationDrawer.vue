@@ -5,9 +5,10 @@
             :clipped="$vuetify.breakpoint.lgAndUp"
             app
             height="600"
+            v-if="loggedIn"
     >
       <v-list dense>
-        <template v-for="item in items">
+        <template v-for="item in allowedItems">
           <v-row
                   v-if="item.heading"
                   :key="item.heading"
@@ -133,9 +134,23 @@
         {icon: 'mdi-message', text: 'Send E-mail'},
         {icon: 'mdi-help-circle', text: 'Help'},
         {icon: 'mdi-cellphone-link', text: 'App downloads'},
-        {icon: 'mdi-logout', text: 'Logout'},
+
       ],
     }),
+    computed: {
+      loggedIn() {
+        return this.$store.getters['auth/loggeIn']
+
+      },
+      allowedItems() {
+        if(this.loggedIn) {
+          const newItems = [ ...this.items, {icon: 'mdi-logout', text: 'Logout'}]
+          return  newItems
+        }else {
+          return this.items
+        }
+      }
+    },
     methods: {
       toggle(v) {
         console.log(v)
