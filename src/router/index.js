@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Store from '@/store/'
+import AuthGuard from './auth-guard'
+const Home = () => import('@/views/Home')
+const Profile = () => import('@/components/user/Profile')
+const Signup = () => import('@/components/user/Signup')
+const Signin = () => import('@/components/user/Signin')
 
 Vue.use(VueRouter)
 
@@ -27,13 +32,52 @@ Vue.use(VueRouter)
       path: '/books',
       name: 'BookList',
       component: () => import('@/components/BookList')
+    },
+    {
+      path: '/books/edit/:id',
+      name: 'EditBook',
+      component: () => import('@/components/BookForm')
+    },
+    {
+      path: '/books/new',
+      name: 'addBook',
+      component: () => import('@/components/BookForm')
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     }
   ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+
 })
+
+let isAuthenticated
+const openRoutes = ['Signin', 'Signup', 'Public']
+router.beforeEach((to, from, next) => {
+  isAuthenticated = Store.getters['auth/loggeIn'];
+  console.log(isAuthenticated)
+  if( openRoutes.includes(to.name)){
+      next()
+    }else if (!isAuthenticated) next({ name: 'Signin' })
+    else next()
+
+  })
 
 export default router

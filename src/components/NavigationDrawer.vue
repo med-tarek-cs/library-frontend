@@ -4,9 +4,11 @@
             v-model="drawer"
             :clipped="$vuetify.breakpoint.lgAndUp"
             app
+            height="600"
+            v-if="loggedIn"
     >
       <v-list dense>
-        <template v-for="item in items">
+        <template v-for="item in allowedItems">
           <v-row
                   v-if="item.heading"
                   :key="item.heading"
@@ -61,6 +63,7 @@
                   v-else
                   :key="item.text"
                   link
+                  @click="handleClicked(item.text)"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -108,9 +111,9 @@
           text: 'Books',
           model: true,
           children: [
-            {icon: 'mdi-menu', text: 'List Books', link: 'books'},
-            {icon: 'mdi-plus', text: 'Add Book', link: 'bookForm'},
-            {icon: 'mdi-plus', text: 'Add Category', link: 'category'},
+            {icon: 'mdi-menu', text: 'List Books', link: '/books'},
+            {icon: 'mdi-plus', text: 'Add Book', link: '/bookForm'},
+            {icon: 'mdi-plus', text: 'Add Category', link: '/category'},
           ],
         },
         {
@@ -131,13 +134,33 @@
         {icon: 'mdi-message', text: 'Send E-mail'},
         {icon: 'mdi-help-circle', text: 'Help'},
         {icon: 'mdi-cellphone-link', text: 'App downloads'},
-        {icon: 'mdi-logout', text: 'Logout'},
+
       ],
     }),
+    computed: {
+      loggedIn() {
+        return this.$store.getters['auth/loggeIn']
+
+      },
+      allowedItems() {
+        if(this.loggedIn) {
+          const newItems = [ ...this.items, {icon: 'mdi-logout', text: 'Logout'}]
+          return  newItems
+        }else {
+          return this.items
+        }
+      }
+    },
     methods: {
       toggle(v) {
         console.log(v)
         this.drawer = v;
+      },
+      handleClicked(v){
+        if('Logout' == v){
+          this.$store.dispatch('auth/logout')
+          this.$router.push('/signin');
+        }
       }
     }
   }
